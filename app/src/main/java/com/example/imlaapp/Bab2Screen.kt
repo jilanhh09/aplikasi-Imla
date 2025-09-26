@@ -48,14 +48,14 @@ fun Bab2Screen(navController: NavHostController) {
 
             // Kategori 1
             HarakatCard(
-                judul = "Huruf yang Bisa Menyambung dan Disambung",
-                penjelasan = "Contoh huruf: ب، ت، ث، ج، ح، خ، س، ش، ص، ض، ط، ظ، ع، غ، ف، ق، ك، ل، م، ن، هـ، ي"
+                title = "Huruf yang Bisa Menyambung dan Disambung",
+                description = "Contoh huruf: ب، ت، ث، ج، ح، خ، س، ش، ص، ض، ط، ظ، ع، غ، ف، ق، ك، ل، م، ن، هـ، ي"
             )
 
             // Kategori 2
             HarakatCard(
-                judul = "Huruf yang Tidak Bisa Menyambung dari Kanan",
-                penjelasan = "Contoh huruf: ا، د، ذ، ر، ز، و\nHuruf ini tidak dapat menyambung ke huruf setelahnya."
+                title = "Huruf yang Tidak Bisa Menyambung dari Kanan",
+                description = "Contoh huruf: ا، د، ذ، ر، ز، و\nHuruf ini tidak dapat menyambung ke huruf setelahnya."
             )
             Spacer(modifier = Modifier.height(8.dp))
 

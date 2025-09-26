@@ -1,6 +1,8 @@
 package com.example.imlaapp
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,10 +20,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavHostController
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun LearnScreen(navController: NavHostController) {
-    Box(modifier = Modifier.fillMaxSize()){
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ){
+
         // Gambar background
         Image(
             painter = painterResource(id = R.drawable.bg),
@@ -30,25 +38,61 @@ fun LearnScreen(navController: NavHostController) {
             modifier = Modifier.fillMaxSize()
         )
     // konten utama dengan padding
-         Column  (modifier = Modifier.padding(16.dp)){
-            Text("Pilih Bab untuk Dipelajari", style = MaterialTheme.typography.headlineSmall)
-            Spacer(modifier = Modifier.height(16.dp))
+         Column  (
+             modifier = Modifier
+                 .fillMaxSize()
+                 .padding(20.dp),
+             horizontalAlignment = Alignment.CenterHorizontally,
+             verticalArrangement = Arrangement.Top
+         ){
+             Spacer(modifier = Modifier.height(100.dp))
 
-            Button(onClick = { navController.navigate(Screen.Bab1.route)}, modifier = Modifier.fillMaxWidth()){
-                Text("Bab1 : Huruf Hijaiyah")
-        }
-            Spacer(modifier = Modifier.height(8.dp))
+             //text
+             Text(
+                "Pilih Bab untuk Dipelajari",
+                style = MaterialTheme.typography.headlineSmall,
+                color = Color.Black
+            )
+            Spacer(modifier = Modifier.height(100.dp))
 
-            Button(onClick = { navController.navigate(Screen.Bab2.route) }, modifier = Modifier.fillMaxWidth()) {
-                Text("Bab 2: Menyambung Huruf")
-        }
-            Spacer(modifier = Modifier.height(8.dp))
+             Column (
+                 verticalArrangement = Arrangement.spacedBy(25.dp),
+                 horizontalAlignment = Alignment.CenterHorizontally,
+                 modifier = Modifier.fillMaxWidth()
+             ){
+                 //menggunakan gambar untuk btn nya (ini bab 1)
+                 Image(
+                     painter = painterResource(id = R.drawable.btn_bab1),
+                     contentDescription = "Tombol Bab 1",
+                     modifier = Modifier
+                         .fillMaxWidth()
+                         .height(150.dp)
+                         .clickable { navController.navigate(Screen.Bab1.route) }
+                 )
 
-            Button(onClick = { navController.navigate(Screen.Bab3.route) }, modifier = Modifier.fillMaxWidth()) {
-                Text("Bab 3: Penulisan Kata dan Kalimat")
+                 //ini bab 2
+                 Image(
+                     painter = painterResource(id = R.drawable.btn_bab2),
+                     contentDescription = "Tombol Bab 1",
+                     modifier = Modifier
+                         .fillMaxWidth()
+                         .height(150.dp)
+                         .clickable { navController.navigate(Screen.Bab2.route) }
+                 )
+
+                 //ini bab 3
+                 Image(
+                     painter = painterResource(id = R.drawable.btn_bab3),
+                     contentDescription = "Tombol Bab 1",
+                     modifier = Modifier
+                         .fillMaxWidth()
+                         .height(150.dp)
+                         .clickable { navController.navigate(Screen.Bab3.route) }
+                 )
              }
          }
     }
 }
+
 
 

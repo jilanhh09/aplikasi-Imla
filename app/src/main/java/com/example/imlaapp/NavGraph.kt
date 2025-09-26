@@ -9,6 +9,7 @@ import com.example.imlaapp.MainMenu
 import com.example.imlaapp.LearnScreen
 import com.example.imlaapp.QuizScreen
 import com.example.imlaapp.AboutScreen
+import com.example.imlaapp.model.Question
 
 sealed class Screen(val route:String){
     object Main : Screen ("main")
@@ -18,6 +19,9 @@ sealed class Screen(val route:String){
     object Bab3 : Screen("bab3")
     object Quiz : Screen("quiz")
     object About : Screen("about")
+    object ComprehensionTest : Screen("quiz_comprehension")
+    object ListeningTest : Screen("quiz_listening")
+
 }
 
 @Composable
@@ -43,6 +47,18 @@ fun NavGraph(navController: NavHostController){
         }
         composable(Screen.About.route) {
             AboutScreen(navController)
+        }
+        composable(Screen.ListeningTest.route) {
+            ListeningTestScreen(navController)
+        }
+        composable(Screen.ComprehensionTest.route) {
+            ComprehensionTestScreen(navController)
+        }
+
+        composable("result/{score}/{total}") { backStackEntry ->
+            val score = backStackEntry.arguments?.getString("score")?.toIntOrNull() ?: 0
+            val total = backStackEntry.arguments?.getString("total")?.toIntOrNull() ?: 0
+            ResultScreen(score = score, total = total, navController = navController)
         }
     }
 }
