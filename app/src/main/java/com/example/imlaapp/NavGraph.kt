@@ -8,10 +8,13 @@ import androidx.navigation.compose.composable
 import com.example.imlaapp.MainMenu
 import com.example.imlaapp.LearnScreen
 import com.example.imlaapp.QuizScreen
+import com.example.imlaapp.SplashScreen
 import com.example.imlaapp.AboutScreen
 import com.example.imlaapp.model.Question
 
+
 sealed class Screen(val route:String){
+    object Splash : Screen("splash")
     object Main : Screen ("main")
     object Learn : Screen("learn")
     object Bab1 : Screen("bab1")
@@ -26,7 +29,12 @@ sealed class Screen(val route:String){
 
 @Composable
 fun NavGraph(navController: NavHostController){
-    NavHost(navController = navController, startDestination = Screen.Main.route) {
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Splash.route) {
+        composable(Screen.Splash.route){
+            SplashScreen(navController)
+        }
         composable(Screen.Main.route) {
             MainMenu(navController)
         }
