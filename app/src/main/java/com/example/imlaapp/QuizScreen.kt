@@ -54,28 +54,20 @@ fun QuizScreen(navController : NavHostController){
                 .fillMaxSize()
                 .padding(14.dp),
             horizontalAlignment =  Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+            verticalArrangement = Arrangement.Center
         ){
-            //ini logo yaaa
-            Image(
-                painter = painterResource(id = R.drawable.logo),
-                contentDescription = "Logo",
-                modifier = Modifier
-                    .height(240.dp)
-                    .width(240.dp)
-                    .padding(10.dp)
-            )
+
             //ini buat  tombol menu nya
             Column(
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxWidth()
             ){
-                QuizButton("Comprehension Test", Color (0xFFFC107)){
+                QuizButton("Comprehension Test", Color (0xFFFFC107)){
                     navController.navigate("quiz_comprehension")
                 }
                 QuizButton("Listening Test", Color (0xFFFF5722)){
-                    navController.navigate("quiz_listening")
+                    navController.navigate("PetunjukListeningTest")
                 }
             }
 

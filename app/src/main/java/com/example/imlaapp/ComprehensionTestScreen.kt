@@ -115,7 +115,7 @@ fun ComprehensionTestScreen(navController: NavHostController) {
                 val backgroundColor = when {
                     showAnswer && isCorrect -> Color(0xFF4CAF50)      // hijau jika jawaban benar
                     showAnswer && isSelected && !isCorrect -> Color(0xFFFF7043) // oranye jika salah & dipilih
-                    else -> Color.Transparent
+                    else -> Color.White
                 }
 
                 val borderColor = when {
@@ -123,6 +123,12 @@ fun ComprehensionTestScreen(navController: NavHostController) {
                     showAnswer && isSelected && !isCorrect -> Color(0xFFFF7043)
                     else -> Color(0xFF4DB6AC) // warna border default (biru muda)
                 }
+                val textColor = when {
+                    showAnswer && isSelected || showAnswer && isCorrect -> Color.White // Tetap putih saat sudah dijawab
+                    else -> Color(0xFF4DB6AC)
+                }
+
+                val buttonShape = RoundedCornerShape (12.dp)
 
                 Button(
                     onClick = {
@@ -133,16 +139,24 @@ fun ComprehensionTestScreen(navController: NavHostController) {
                         }
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = backgroundColor),
+                    shape = buttonShape,
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp, pressedElevation = 0.dp),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 6.dp)
                         .heightIn(min = 56.dp)
-                        .border(width = 2.dp, color = borderColor, shape = RoundedCornerShape(12.dp))
+                        .then(
+                            if (!showAnswer) {
+                                Modifier.border(width = 2.dp, color = borderColor, shape = buttonShape)
+                            } else {
+                                Modifier // Modifier kosong jika sudah dijawab
+                            }
+                        )
                 ) {
                     // teks putih agar kontras saat border/transparent atau saat bg berwarna
                     Text(
                         text = option,
-                        color = Color.White,
+                        color = textColor,
                         textAlign = TextAlign.Center,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,

@@ -24,6 +24,7 @@ sealed class Screen(val route:String){
     object About : Screen("about")
     object ComprehensionTest : Screen("quiz_comprehension")
     object ListeningTest : Screen("quiz_listening")
+    object PetunjukListeningTest : Screen("PetunjukListeningTest")
 
 }
 
@@ -58,6 +59,9 @@ fun NavGraph(navController: NavHostController){
         }
         composable(Screen.ListeningTest.route) {
             ListeningTestScreen(navController)
+        }
+        composable(Screen.PetunjukListeningTest.route) {
+            PetunjukListeningTest(navController)
         }
         composable(Screen.ComprehensionTest.route) {
             ComprehensionTestScreen(navController)
