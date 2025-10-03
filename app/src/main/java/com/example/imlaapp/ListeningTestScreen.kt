@@ -1,120 +1,134 @@
 package com.example.imlaapp
 
-import android.media.MediaPlayer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.sp
 
 
+const val MAX_REPEAT = 2
 
 @Composable
-fun ListeningTestScreen(navController: NavHostController) {
-    //state
-    var playCount by remember { mutableStateOf(0) }
-    var showAnswer by remember { mutableStateOf(false) }
+fun ListeningScreen(
+    onFinishedTest: () -> Unit,
 
-    //media player
-    val context = LocalContext.current
-    val mediaPlayer = remember { MediaPlayer.create(context, R.raw.listening)}
+    speakerIconResId: Int = R.drawable.sound,
+    backgroundResId: Int = R.drawable.bg,
 
-    //ui
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ){
-        //bg
-        Image(
-            painter = painterResource(id = R.drawable.bg),
-            contentDescription = "Background",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-        )
+) {
+    var repeatCount by remember { mutableIntStateOf(0) }
+    val isFinishedPlaying = remember { derivedStateOf { repeatCount >= MAX_REPEAT } }
 
-        //konten tengah
+    Box(modifier = Modifier.fillMaxSize()) {
+
+
+        if (backgroundResId != 0) { // Cek agar tidak error jika placeholder
+            Image(
+                painter = painterResource(id = backgroundResId),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+                alpha = 0.5f //
+            )
+        } else {
+            // Fallback: Jika tidak ada background, gunakan warna solid
+            Spacer(modifier = Modifier.fillMaxSize().background(Color.White))
+        }
+
+
+        // Konten utama diletakkan di atas Background
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ){
-            if(!showAnswer){
-                Icon(
-                    painter = painterResource(id = R.drawable.sound),
-                    contentDescription = "play",
-                    modifier = Modifier
-                        .size(120.dp)
-                        .clickable {
-                            if(playCount <3){
-                                mediaPlayer.start()
-                                playCount++
-                            }
-                        }
-                )
-                Text("Diputar:$playCount/3 kali")
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            // ... (TopBar, Judul, Petunjuk tetap sama) ...
 
-                Spacer(modifier = Modifier.height(16.dp))
+            Text("Tes Imla' - Dikte Arab", fontSize = 24.sp, style = MaterialTheme.typography.headlineMedium)
+            Text(
+                text = "Level 1: Dengarkan dan tulis di buku Anda. Maksimal 2x.",
+                fontSize = 16.sp,
+                modifier = Modifier.padding(vertical = 16.dp)
+            )
 
-                Button(
-                    onClick = {showAnswer = true},
-                    enabled = playCount >=1,
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFA726))
-                ){
-                    Text("Finish")
+            Spacer(modifier = Modifier.height(64.dp))
+
+            // 2. Gunakan Ikon Suara Anda di AudioButton
+            AudioButton(
+                iconResId = speakerIconResId,
+                isEnabled = !isFinishedPlaying.value,
+                onPlayClicked = {
+                    // Logic untuk memutar audio
+                    // ... playAudio() ...
+                    repeatCount++
                 }
-            } else {
-                Text(
-                    text = "Jawaban",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White,
-                    modifier = Modifier
-                        .background(Color(0xFFFF7043))
-                        .padding(16.dp)
-                )
+            )
 
-                Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "المَدْرَسَةُ مَفْتُوحَةٌ فِي الصَّبَاحِ...",
-                        color = Color.Black,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
+            Spacer(modifier = Modifier.height(32.dp))
 
-                Spacer(modifier = Modifier.height(32.dp))
-                Button(onClick = {
-                    navController.navigate(Screen.Main.route){
-                        popUpTo(Screen.Main.route){inclusive = true}
-                    }
-                }) {
-                    Text("kembali ke menu")
-                }
+            Text(
+                text = "Pengulangan: $repeatCount/$MAX_REPEAT",
+                fontSize = 16.sp,
+                color = if (isFinishedPlaying.value) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
+            )
+
+            Spacer(modifier = Modifier.height(64.dp))
+
+            // Tombol Selesai
+            Button(
+                onClick = onFinishedTest,
+                enabled = isFinishedPlaying.value,
+                modifier = Modifier.fillMaxWidth().height(50.dp)
+            ) {
+                Text("Selesai & Cek Jawaban", fontSize = 18.sp)
             }
+        }
+    }
+}
+
+/**
+ * Komponen Visual untuk Ikon Suara (menggunakan Resource ID)
+ */
+@Composable
+fun AudioButton(
+    iconResId: Int,
+    isEnabled: Boolean,
+    onPlayClicked: () -> Unit
+) {
+    val iconTint = if (isEnabled) MaterialTheme.colorScheme.primary else Color.Gray
+
+    Card(
+        modifier = Modifier
+            .size(150.dp)
+            .clickable(enabled = isEnabled, onClick = onPlayClicked),
+        shape = androidx.compose.foundation.shape.CircleShape,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = if (isEnabled) 1f else 0.5f)
+        )
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            // Mengganti Icon bawaan dengan Image dari resource ID Anda
+            Image(
+                painter = painterResource(id = iconResId),
+                contentDescription = "Putar Audio",
+                contentScale = ContentScale.Fit,
+                // Opsional: berikan tint warna pada ikon Anda
+                // colorFilter = ColorFilter.tint(iconTint),
+                modifier = Modifier.size(70.dp)
+            )
         }
     }
 }
