@@ -13,18 +13,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
-
+//batas maksimal pengulangan audio yang diizinkan sebanyak 2 kali
 const val MAX_REPEAT = 2
 
 @Composable
-fun ListeningScreen(
-    onFinishedTest: () -> Unit,
-
+fun ListeningTestScreen(
+    navController: NavHostController,
     speakerIconResId: Int = R.drawable.sound,
     backgroundResId: Int = R.drawable.bg,
 
-) {
+    ) {
     var repeatCount by remember { mutableIntStateOf(0) }
     val isFinishedPlaying = remember { derivedStateOf { repeatCount >= MAX_REPEAT } }
 
@@ -52,7 +52,6 @@ fun ListeningScreen(
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // ... (TopBar, Judul, Petunjuk tetap sama) ...
 
             Text("Tes Imla' - Dikte Arab", fontSize = 24.sp, style = MaterialTheme.typography.headlineMedium)
             Text(
@@ -86,7 +85,10 @@ fun ListeningScreen(
 
             // Tombol Selesai
             Button(
-                onClick = onFinishedTest,
+                // Panggil navigasi ke layar berikutnya (misal: "answer_screen")
+                onClick = {
+                    navController.navigate("answer_screen") // Ganti "answer_screen" dengan rute tujuan Anda
+                },
                 enabled = isFinishedPlaying.value,
                 modifier = Modifier.fillMaxWidth().height(50.dp)
             ) {
