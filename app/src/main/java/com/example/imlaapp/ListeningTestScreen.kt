@@ -87,7 +87,7 @@ fun ListeningTestScreen(
             Button(
                 // Panggil navigasi ke layar berikutnya (misal: "answer_screen")
                 onClick = {
-                    navController.navigate("answer_screen") // Ganti "answer_screen" dengan rute tujuan Anda
+                    navController.navigate("AnswerListeningTest")
                 },
                 enabled = isFinishedPlaying.value,
                 modifier = Modifier.fillMaxWidth().height(50.dp)
