@@ -1,5 +1,6 @@
 package com.example.imlaapp
 
+import android.media.MediaPlayer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.compose.ui.platform.LocalContext
 
 //batas maksimal pengulangan audio yang diizinkan sebanyak 2 kali
 const val MAX_REPEAT = 2
@@ -23,10 +25,24 @@ fun ListeningTestScreen(
     navController: NavHostController,
     speakerIconResId: Int = R.drawable.sound,
     backgroundResId: Int = R.drawable.bg,
+    audioResId: Int = R.raw.Bgmusic
 
-    ) {
+) {
+    val context = LocalContext.current
     var repeatCount by remember { mutableIntStateOf(0) }
     val isFinishedPlaying = remember { derivedStateOf { repeatCount >= MAX_REPEAT } }
+
+    // State untuk MediaPlayer
+    val mediaPlayer = remember {
+        // Inisialisasi MediaPlayer hanya sekali
+        MediaPlayer.create(context, audioResId)
+    }
+    // Effect untuk melepaskan MediaPlayer saat Composable keluar dari komposisi
+    DisposableEffect(Unit) {
+        onDispose {
+            mediaPlayer.release() // <<< Sangat penting untuk melepaskan resource
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -68,7 +84,12 @@ fun ListeningTestScreen(
                 isEnabled = !isFinishedPlaying.value,
                 onPlayClicked = {
                     // Logic untuk memutar audio
-                    // ... playAudio() ...
+                    if (mediaPlayer.isPlaying) {
+                        mediaPlayer.stop()
+                        mediaPlayer.prepare() // Siapkan lagi setelah di-stop jika perlu
+                    }
+                    // Logika untuk memutar audio
+                    mediaPlayer.start() // <<< Mulai pemutaran audio
                     repeatCount++
                 }
             )

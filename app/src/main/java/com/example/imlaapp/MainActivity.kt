@@ -35,7 +35,63 @@ import androidx.navigation.NavHostController
 import com.example.imlaapp.ui.theme.ImlaappTheme
 import androidx.navigation.compose.rememberNavController
 import com.example.imlaapp.NavGraph
+import android.content.Context
+import android.media.MediaPlayer
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.VolumeOff
+import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 
+
+// ID Resource untuk musik latar
+val BGM_RES_ID = R.raw.Bgmusic
+
+// State yang dapat diobservasi oleh Composable UI
+val isMusicPlayingState = mutableStateOf(false)
+
+object BackgroundMusicPlayer {
+    private var mediaPlayer: MediaPlayer? = null
+
+    // Status Play/Pause yang terhubung dengan state Compose
+    val isPlaying: Boolean
+        get() = isMusicPlayingState.value
+
+    fun initializeAndPlay(context: Context, audioResId: Int) {
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(context, audioResId).apply {
+                isLooping = true // Musik berulang
+            }
+        }
+        if (mediaPlayer?.isPlaying == false) {
+            mediaPlayer?.start()
+            isMusicPlayingState.value = true
+        }
+    }
+    fun pause() {
+        if (mediaPlayer?.isPlaying == true) {
+            mediaPlayer?.pause()
+            isMusicPlayingState.value = false
+        }
+    }
+
+    // Fungsi untuk mengubah status Play/Pause
+    fun toggle(context: Context, audioResId: Int) {
+        if (isMusicPlayingState.value) {
+            pause()
+        } else {
+            initializeAndPlay(context, audioResId)
+        }
+    }
+
+    fun release() {
+        mediaPlayer?.release()
+        mediaPlayer = null
+        isMusicPlayingState.value = false
+    }
+}
 
 // MainActivity → halaman pertama yang dijalankan saat app dibuka
 class MainActivity : ComponentActivity() {
@@ -52,12 +108,38 @@ class MainActivity : ComponentActivity() {
                 NavGraph(navController = navController)
             }
         }
+        // **[TAMBAHAN: Mulai memutar musik saat onCreate]**
+        BackgroundMusicPlayer.initializeAndPlay(this, BGM_RES_ID)
+    }
+    // **[TAMBAHAN: Menghentikan musik saat aplikasi masuk ke background]**
+    override fun onPause() {
+        super.onPause()
+        BackgroundMusicPlayer.pause()
+    }
+
+    // **[TAMBAHAN: Melanjutkan musik saat aplikasi kembali]**
+    override fun onResume() {
+        super.onResume()
+        // Cek dulu apakah user ingin musiknya dimatikan saat onPause
+        if (BackgroundMusicPlayer.isPlaying) {
+            BackgroundMusicPlayer.initializeAndPlay(this, BGM_RES_ID)
+        }
+    }
+    // **[TAMBAHAN: Membersihkan resource saat Activity dihancurkan]**
+    override fun onDestroy() {
+        super.onDestroy()
+        BackgroundMusicPlayer.release()
     }
 }
 
 // Main Menu → halaman utama aplikasi
 @Composable
 fun MainMenu(navController: NavHostController){
+
+    val context = LocalContext.current
+
+    // Ambil status musik dari state global agar ikon berubah otomatis
+    val isMusicPlaying = isMusicPlayingState.value
 
     // Box → tumpukan, posisi relatif berdasarkan z-index
     Box(
@@ -73,6 +155,27 @@ fun MainMenu(navController: NavHostController){
             modifier = Modifier.fillMaxSize(),//gambar sebesar layar android
             contentScale = ContentScale.Crop //potong gambar supaya penuh
         )
+
+        // **[TAMBAHAN: Ikon Kontrol Musik di Sudut Kanan Atas]**
+        IconButton(
+            onClick = {
+                // Panggil fungsi toggle
+                BackgroundMusicPlayer.toggle(context, BGM_RES_ID)
+            },
+            modifier = Modifier
+                .align(Alignment.TopEnd) // Posisikan di kanan atas
+                .padding(16.dp) // Beri jarak dari tepi
+        ) {
+            Icon(
+                // Ikon berubah tergantung status musik
+                imageVector = if (isMusicPlaying)
+                    Icons.Default.VolumeUp
+                else
+                    Icons.Default.VolumeOff,
+                contentDescription = "Kontrol Musik",
+                tint = Color.White // Warna ikon agar terlihat di background
+            )
+        }
 
         // kolom utama konten
         Column(
