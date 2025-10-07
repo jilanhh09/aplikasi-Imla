@@ -47,7 +47,7 @@ import androidx.compose.ui.platform.LocalContext
 
 
 // ID Resource untuk musik latar
-val BGM_RES_ID = R.raw.Bgmusic
+val BGM_RES_ID = R.raw.bgmusic
 
 // State yang dapat diobservasi oleh Composable UI
 val isMusicPlayingState = mutableStateOf(false)
