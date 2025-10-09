@@ -42,6 +42,7 @@ import androidx.compose.material.icons.filled.VolumeOff
 import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.LocalContext
 
@@ -59,19 +60,25 @@ object BackgroundMusicPlayer {
     val isPlaying: Boolean
         get() = isMusicPlayingState.value
 
-    fun initializeAndPlay(context: Context, audioResId: Int) {
+    fun getPlayer(context: Context, audioResId: Int): MediaPlayer? {
         if (mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(context, audioResId).apply {
                 isLooping = true // Musik berulang
             }
         }
-        if (mediaPlayer?.isPlaying == false) {
-            mediaPlayer?.start()
+        return mediaPlayer
+    }
+
+    fun start(context: Context, audioResId: Int){
+        val player = getPlayer(context, audioResId)
+        if (player?.isPlaying == false){
+            player?.start()
             isMusicPlayingState.value = true
         }
     }
-    fun pause() {
-        if (mediaPlayer?.isPlaying == true) {
+
+    fun pause(){
+        if (mediaPlayer?.isPlaying == true){
             mediaPlayer?.pause()
             isMusicPlayingState.value = false
         }
@@ -82,7 +89,7 @@ object BackgroundMusicPlayer {
         if (isMusicPlayingState.value) {
             pause()
         } else {
-            initializeAndPlay(context, audioResId)
+            start(context, audioResId)
         }
     }
 
@@ -108,27 +115,7 @@ class MainActivity : ComponentActivity() {
                 NavGraph(navController = navController)
             }
         }
-        // **[TAMBAHAN: Mulai memutar musik saat onCreate]**
-        BackgroundMusicPlayer.initializeAndPlay(this, BGM_RES_ID)
-    }
-    // **[TAMBAHAN: Menghentikan musik saat aplikasi masuk ke background]**
-    override fun onPause() {
-        super.onPause()
-        BackgroundMusicPlayer.pause()
-    }
 
-    // **[TAMBAHAN: Melanjutkan musik saat aplikasi kembali]**
-    override fun onResume() {
-        super.onResume()
-        // Cek dulu apakah user ingin musiknya dimatikan saat onPause
-        if (BackgroundMusicPlayer.isPlaying) {
-            BackgroundMusicPlayer.initializeAndPlay(this, BGM_RES_ID)
-        }
-    }
-    // **[TAMBAHAN: Membersihkan resource saat Activity dihancurkan]**
-    override fun onDestroy() {
-        super.onDestroy()
-        BackgroundMusicPlayer.release()
     }
 }
 
@@ -137,6 +124,14 @@ class MainActivity : ComponentActivity() {
 fun MainMenu(navController: NavHostController){
 
     val context = LocalContext.current
+
+    DisposableEffect(key1 = Unit) {
+        BackgroundMusicPlayer.start(context, BGM_RES_ID) //ketika buka mainmenu music nyala
+
+        onDispose {
+            BackgroundMusicPlayer.pause()//ini pause music ketika ke halaman lain
+        }
+    }
 
     // Ambil status musik dari state global agar ikon berubah otomatis
     val isMusicPlaying = isMusicPlayingState.value
