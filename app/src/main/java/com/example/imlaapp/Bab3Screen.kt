@@ -62,7 +62,7 @@ fun Bab3Screen(navController: NavHostController) {
 
                 // Pengantar
                 Text(
-                    "Huruf Hamzah ($\text{ء}$) memiliki cara penulisan unik. Hamzah dapat ditulis di atas huruf Alif, Wau, Ya, atau berdiri sendiri (Nabr/Sathri), tergantung posisinya dan harakatnya. Ada tiga jenis penulisan Hamzah:",
+                    "Huruf Hamzah (ء) memiliki cara penulisan unik. Hamzah dapat ditulis di atas huruf Alif, Wau, Ya, atau berdiri sendiri (Nabr/Sathri), tergantung posisinya dan harakatnya. Ada tiga jenis penulisan Hamzah:",
                     style = MaterialTheme.typography.bodyLarge,
                     color = contentColor,
                     modifier = Modifier.padding(bottom = 16.dp)
@@ -125,8 +125,8 @@ fun HamzahAwalSection(contentColor: Color) {
             fontWeight = FontWeight.SemiBold,
             color = contentColor
         )
-        Text("• Di atas Alif jika berharakat **Fathah** ($\text{أ}$) atau **Dhamah** ($\text{أ}$)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Di bawah Alif jika berharakat **Kasrah** ($\text{إ}$)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Di atas Alif jika berharakat **Fathah** (أ) atau **Dhamah** (أ)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Di bawah Alif jika berharakat **Kasrah** (إ)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
 
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -164,9 +164,9 @@ fun HamzahTengahSection(contentColor: Color) {
         )
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("• Jika terkuat adalah Kasrah: ditulis di atas **Ya' tanpa titik ($\text{ئ}$)**. Contoh: **سُئِلَ** (Su'ila)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika terkuat adalah Dhamah: ditulis di atas **Wau ($\text{ؤ}$)**. Contoh: **مُؤْمِنٌ** (Mu'minun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika terkuat adalah Fathah: ditulis di atas **Alif ($\text{أ}$)**. Contoh: **رَأْسٌ** (Ra'sun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika terkuat adalah Kasrah: ditulis di atas **Ya' tanpa titik (ئ)**. Contoh: **سُئِلَ** (Su'ila)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika terkuat adalah Dhamah: ditulis di atas **Wau (ؤ)**. Contoh: **مُؤْمِنٌ** (Mu'minun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika terkuat adalah Fathah: ditulis di atas **Alif (أ)**. Contoh: **رَأْسٌ** (Ra'sun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
     }
 }
 
@@ -196,9 +196,9 @@ fun HamzahAkhirSection(contentColor: Color) {
         )
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("• Jika didahului **Kasrah**: ditulis di atas **Ya' tanpa titik ($\text{ئ}$)**. Contoh: **شَاطِئٌ** (Shāti'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika didahului **Dhamah**: ditulis di atas **Wau ($\text{ؤ}$)**. Contoh: **تَبَوُّءُ** (Tabawwu'u)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika didahului **Fathah**: ditulis di atas **Alif ($\text{أ}$)**. Contoh: **نَبَأٌ** (Naba'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika didahului **Sukun/Mad**: ditulis **berdiri sendiri** ($\text{ء}$). Contoh: **مَاءٌ** (Mā'un), **شَيْءٌ** (Shai'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului **Kasrah**: ditulis di atas **Ya' tanpa titik (ئ)**. Contoh: **شَاطِئٌ** (Shāti'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului **Dhamah**: ditulis di atas **Wau (ؤ)**. Contoh: **تَبَوُّءُ** (Tabawwu'u)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului **Fathah**: ditulis di atas **Alif (أ)**. Contoh: **نَبَأٌ** (Naba'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului **Sukun/Mad**: ditulis **berdiri sendiri** (ء). Contoh: **مَاءٌ** (Mā'un), **شَيْءٌ** (Shai'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
     }
 }

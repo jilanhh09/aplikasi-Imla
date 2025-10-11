@@ -100,7 +100,7 @@ fun ListeningTestScreen(
             Text(
                 text = "Pengulangan: $repeatCount/$MAX_REPEAT",
                 fontSize = 16.sp,
-                color = if (isFinishedPlaying.value) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
+                color = if (isFinishedPlaying.value) MaterialTheme.colorScheme.error else Color.DarkGray
             )
 
             Spacer(modifier = Modifier.height(64.dp))
@@ -114,7 +114,8 @@ fun ListeningTestScreen(
                 enabled = isFinishedPlaying.value,
                 modifier = Modifier.fillMaxWidth().height(50.dp)
             ) {
-                Text("Selesai & Cek Jawaban", fontSize = 18.sp)
+                Text("Selesai & Cek Jawaban", fontSize = 18.sp, color = Color.DarkGray
+                )
             }
         }
     }

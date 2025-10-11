@@ -73,7 +73,7 @@ fun Bab1Screen(navController: NavHostController) {
                             "**Huruf yang tidak bisa bersambung** ke kiri (hanya ke kanan) adalah: **ا و ز ر ذ د**\n" +
                             "**Huruf yang dapat bersambung** dari kedua sisi adalah: **ي ه ن م ل ك ق ف غ ع ظ ط ض ص ش س خ ح ج ث ت ب**",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = contentColor,
+                    color = Color.DarkGray,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
                 Text(
