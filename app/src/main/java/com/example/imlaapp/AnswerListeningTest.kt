@@ -59,11 +59,13 @@ fun AnswerListeningTest(navController: NavHostController) {
             // Atur agar konten memenuhi ruang dan berada di tengah (untuk tombol)
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(64.dp))
 
             // Judul
             Text(
                 text = "Periksa Jawaban Anda!",
                 textAlign = TextAlign.Start,
+                fontSize = 30.sp,
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                 color = Color.Black,
                 modifier = Modifier

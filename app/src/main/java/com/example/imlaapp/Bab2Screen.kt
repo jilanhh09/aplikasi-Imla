@@ -35,7 +35,7 @@ fun Bab2Screen(navController: NavHostController) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.bg),
+            painter = painterResource(id = R.drawable.bg_1),
             contentDescription = "Background Bab 2",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -48,6 +48,7 @@ fun Bab2Screen(navController: NavHostController) {
                 .padding(horizontal = 16.dp, vertical = 24.dp)
         ) {
             item {
+                Spacer(modifier = Modifier.height(64.dp))
                 // Judul Bab
                 Text(
                     "Bab 2: Alif Lam Syamsiyah dan Qomariyah",

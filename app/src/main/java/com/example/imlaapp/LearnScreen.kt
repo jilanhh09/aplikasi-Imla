@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 
 @Composable
 fun LearnScreen(navController: NavHostController) {
@@ -51,12 +52,13 @@ fun LearnScreen(navController: NavHostController) {
              Text(
                 "Pilih Bab untuk Dipelajari",
                 style = MaterialTheme.typography.headlineSmall,
-                color = Color.Black
+                color = Color.Black,
+                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(100.dp))
 
              Column (
-                 verticalArrangement = Arrangement.spacedBy(25.dp),
+                 verticalArrangement = Arrangement.spacedBy(10.dp),
                  horizontalAlignment = Alignment.CenterHorizontally,
                  modifier = Modifier.fillMaxWidth()
              ){

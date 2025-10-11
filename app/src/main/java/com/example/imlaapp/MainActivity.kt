@@ -37,6 +37,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.imlaapp.NavGraph
 import android.content.Context
 import android.media.MediaPlayer
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.VolumeOff
 import androidx.compose.material.icons.filled.VolumeUp
@@ -45,6 +46,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 
 
 // ID Resource untuk musik latar
@@ -52,6 +54,7 @@ val BGM_RES_ID = R.raw.bgmusic
 
 // State yang dapat diobservasi oleh Composable UI
 val isMusicPlayingState = mutableStateOf(false)
+val ContrastingColor = Color(0xFF009688)
 
 object BackgroundMusicPlayer {
     private var mediaPlayer: MediaPlayer? = null
@@ -160,6 +163,7 @@ fun MainMenu(navController: NavHostController){
             modifier = Modifier
                 .align(Alignment.TopEnd) // Posisikan di kanan atas
                 .padding(16.dp) // Beri jarak dari tepi
+                .size(50.dp)
         ) {
             Icon(
                 // Ikon berubah tergantung status musik
@@ -168,7 +172,8 @@ fun MainMenu(navController: NavHostController){
                 else
                     Icons.Default.VolumeOff,
                 contentDescription = "Kontrol Musik",
-                tint = Color.White // Warna ikon agar terlihat di background
+                tint = ContrastingColor,
+                modifier = Modifier.size(45.dp)
             )
         }
 
@@ -180,7 +185,7 @@ fun MainMenu(navController: NavHostController){
             horizontalAlignment = Alignment.CenterHorizontally, // isi ditengah horizontal
             verticalArrangement = Arrangement.Top // mulai dari atas halaman
         ){
-            Spacer(modifier = Modifier.height(200.dp)) // jarak dari atas
+            Spacer(modifier = Modifier.height(180.dp)) // jarak dari atas
 
             //logo
             Image(
@@ -191,7 +196,7 @@ fun MainMenu(navController: NavHostController){
                     .width(200.dp)
             )
 
-            Spacer(modifier = Modifier.height(64.dp)) //jarak antara logo dan tombol
+            Spacer(modifier = Modifier.height(48.dp)) //jarak antara logo dan tombol
 
             //Tombol Menu
             Column(
@@ -230,7 +235,8 @@ fun MenuButton(text: String,  bgColor: Color, onClick: () -> Unit){
         Text(
             text,
             color = Color.White,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(vertical = 4.dp))
     }
 }

@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 
 //batas maksimal pengulangan audio yang diizinkan sebanyak 2 kali
 const val MAX_REPEAT = 2
@@ -68,13 +69,13 @@ fun ListeningTestScreen(
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(64.dp))
 
-            Text("Tes Imla' - Dikte Arab", fontSize = 24.sp, style = MaterialTheme.typography.headlineMedium)
             Text(
-                text = "Level 1: Dengarkan dan tulis di buku Anda. Maksimal 2x.",
-                fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 16.dp)
-            )
+                "Tes Imla' - Dikte Arab",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineLarge)
 
             Spacer(modifier = Modifier.height(64.dp))
 

@@ -37,7 +37,7 @@ fun Bab1Screen(navController: NavHostController) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Gambar background
         Image(
-            painter = painterResource(id = R.drawable.bg),
+            painter = painterResource(id = R.drawable.bg_1),
             contentDescription = "Background Learn",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -48,6 +48,7 @@ fun Bab1Screen(navController: NavHostController) {
                 .padding(horizontal = 16.dp,vertical = 24.dp)
         ) {
             item {
+                Spacer(modifier = Modifier.height(64.dp))
                 Text(
                     "Bab 1: Merangkai Huruf Hijaiyah",
                     style = MaterialTheme.typography.headlineMedium,

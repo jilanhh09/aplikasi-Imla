@@ -40,7 +40,7 @@ fun PetunjukListeningTest(navController: NavHostController) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Background
         Image(
-            painter = painterResource(id = R.drawable.bg),
+            painter = painterResource(id = R.drawable.bg_1),
             contentDescription = "Background",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
@@ -53,6 +53,7 @@ fun PetunjukListeningTest(navController: NavHostController) {
                 .verticalScroll(rememberScrollState()), // Membuat bisa di-scroll jika layar kecil
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(64.dp))
 
             // JUDUL UTAMA
             Text(
