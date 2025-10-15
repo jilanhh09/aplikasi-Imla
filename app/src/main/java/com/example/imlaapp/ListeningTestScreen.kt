@@ -26,7 +26,7 @@ fun ListeningTestScreen(
     navController: NavHostController,
     speakerIconResId: Int = R.drawable.sound,
     backgroundResId: Int = R.drawable.bg,
-    audioResId: Int = R.raw.bgmusic
+    audioResId: Int = R.raw.listeningtest_sound_fix //masukin suara nya disini
 
 ) {
     val context = LocalContext.current
