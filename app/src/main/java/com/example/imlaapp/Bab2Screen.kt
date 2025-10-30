@@ -69,7 +69,7 @@ fun Bab2Screen(navController: NavHostController) {
 
                 // Pengantar
                 Text(
-                    "Ketika huruf **Alif Lam (ال)** bertemu dengan huruf hijaiyah lainnya, cara membacanya terbagi menjadi dua hukum: **Idzhar Qomariyah** dan **Idgham Syamsiyah**.",
+                    "Ketika huruf Alif Lam (ال) bertemu dengan huruf hijaiyah lainnya, cara membacanya terbagi menjadi dua hukum: Idzhar Qomariyah dan Idgham Syamsiyah.",
                     style = MaterialTheme.typography.bodyLarge,
                     color = contentColor,
                     modifier = Modifier.padding(bottom = 16.dp)
@@ -114,18 +114,19 @@ fun SyamsiyahSection(contentColor: Color) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            "Alif Lam (**ال**) bertemu salah satu dari 14 huruf Syamsiyah. **Huruf Lam (ل) tidak dibaca** dan dileburkan (di-idghamkan) ke huruf berikutnya, yang diberi tanda **Tasydid** ($\text{ّ}$)",
+            "Alif Lam (ال) bertemu salah satu dari 14 huruf Syamsiyah. Huruf Lam (ل) tidak dibaca dan dileburkan (di-idghamkan) ke huruf berikutnya, yang diberi tanda Tasydid",
             style = MaterialTheme.typography.bodyMedium,
-            color = contentColor
+            color = Color.Black
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // Huruf-huruf Syamsiyah
         Text(
-            "Hurufnya ada 14: **ت ث د ذ ر ز س ش ص ض ط ظ ل ن**",
+            "Hurufnya ada 14: " +
+                    "\n  ت ث د ذ ر ز س ش ص ض ط ظ ل ن",
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.SemiBold,
-            color = contentColor
+            color = Color.Black
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -134,17 +135,17 @@ fun SyamsiyahSection(contentColor: Color) {
             "Contoh:",
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
-            color = contentColor
+            color = Color.Black
         )
         Text(
-            "**اَلدِّيْنُ** (ad-Dīnu) → **لَام** hilang, huruf **د** dibaca tasydid.",
+            "اَلدِّيْنُ (ad-Dīnu) → Alif Lam (ال) hilang, huruF (د) dibaca tasydid.",
             style = MaterialTheme.typography.bodyLarge,
-            color = contentColor
+            color = Color.Black
         )
         Text(
-            "**اَلشَّمْسُ** (asy-Syamsu) → **لَام** hilang, huruf **ش** dibaca tasydid.",
+            "اَلشَّمْسُ (asy-Syamsu) →  Alif Lam (ال) hilang, huruf (ش) dibaca tasydid.",
             style = MaterialTheme.typography.bodyLarge,
-            color = contentColor
+            color = Color.Black
         )
     }
 }
@@ -168,18 +169,18 @@ fun QomariyahSection(contentColor: Color) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            "Alif Lam (**ال**) bertemu salah satu dari 14 huruf Qomariyah. **Huruf Lam (ل) dibaca jelas** dan diberi tanda **Sukun** ($\text{ْ}$).",
+            "Alif Lam (ال) bertemu salah satu dari 14 huruf Qomariyah. Huruf Lam (ل) dibaca jelas dan diberi tanda Sukun .",
             style = MaterialTheme.typography.bodyMedium,
-            color = contentColor
+            color = Color.Black
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // Huruf-huruf Qomariyah
         Text(
-            "Hurufnya ada 14: **ا ب غ ح ج ك و خ ف ع ق ي م ه**",
+            "Hurufnya ada 14:\n ا ب غ ح ج ك و خ ف ع ق ي م ه ",
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.SemiBold,
-            color = contentColor
+            color = Color.Black
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -188,17 +189,17 @@ fun QomariyahSection(contentColor: Color) {
             "Contoh:",
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
-            color = contentColor
+            color = Color.Black
         )
         Text(
-            "**اَلْقَمَرُ** (al-Qomaru) → **لَام** dibaca jelas (sukun).",
+            "اَلْقَمَرُ (al-Qomaru) → Alif Lam (ال) dibaca jelas .",
             style = MaterialTheme.typography.bodyLarge,
-            color = contentColor
+            color = Color.Black
         )
         Text(
-            "**اَلْبَيْتُ** (al-Baitu) → **لَام** dibaca jelas (sukun).",
+            "اَلْبَيْتُ (al-Baitu) → Alif Lam (ال)dibaca jelas .",
             style = MaterialTheme.typography.bodyLarge,
-            color = contentColor
+            color = Color.Black
         )
     }
 }

@@ -62,7 +62,7 @@ fun Bab3Screen(navController: NavHostController) {
 
                 // Pengantar
                 Text(
-                    "Huruf Hamzah (ء) memiliki cara penulisan unik. Hamzah dapat ditulis di atas huruf Alif, Wau, Ya, atau berdiri sendiri (Nabr/Sathri), tergantung posisinya dan harakatnya. Ada tiga jenis penulisan Hamzah:",
+                    "Huruf Hamzah (ء) memiliki cara penulisan unik. Hamzah dapat ditulis di atas huruf Alif, Wau, Ya, atau berdiri sendiri , tergantung posisinya dan harakatnya. Ada tiga jenis penulisan Hamzah:",
                     style = MaterialTheme.typography.bodyLarge,
                     color = contentColor,
                     modifier = Modifier.padding(bottom = 16.dp)
@@ -113,7 +113,7 @@ fun HamzahAwalSection(contentColor: Color) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            "Ketika Hamzah berada di awal kata, ia selalu ditulis di atas huruf **Alif (ا)**.",
+            "Ketika Hamzah berada di awal kata, ia selalu ditulis di atas huruf Alif (ا).",
             style = MaterialTheme.typography.bodyMedium,
             color = contentColor
         )
@@ -125,12 +125,12 @@ fun HamzahAwalSection(contentColor: Color) {
             fontWeight = FontWeight.SemiBold,
             color = contentColor
         )
-        Text("• Di atas Alif jika berharakat **Fathah** (أ) atau **Dhamah** (أ)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Di bawah Alif jika berharakat **Kasrah** (إ)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Di atas Alif jika berharakat Fathah (أ) atau Dhamah (أ)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Di bawah Alif jika berharakat Kasrah (إ)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
 
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            "Contoh: **أَحَدٌ** (Ahadun), **أُكْتُبْ** (Uktub), **إِبْرَةٌ** (Ibratun)",
+            "Contoh: أَحَدٌ (Ahadun), أُكْتُبْ (Uktub), إِبْرَةٌ (Ibratun)",
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Bold,
             color = contentColor
@@ -158,15 +158,15 @@ fun HamzahTengahSection(contentColor: Color) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            "Penulisannya berdasarkan perbandingan kekuatan harakat Hamzah dan huruf sebelumnya. Urutan kekuatan: **Kasrah > Dhamah > Fathah > Sukun**.",
+            "Penulisannya berdasarkan harakat Hamzah dan huruf sebelumnya.",
             style = MaterialTheme.typography.bodyMedium,
             color = contentColor
         )
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("• Jika terkuat adalah Kasrah: ditulis di atas **Ya' tanpa titik (ئ)**. Contoh: **سُئِلَ** (Su'ila)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika terkuat adalah Dhamah: ditulis di atas **Wau (ؤ)**. Contoh: **مُؤْمِنٌ** (Mu'minun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika terkuat adalah Fathah: ditulis di atas **Alif (أ)**. Contoh: **رَأْسٌ** (Ra'sun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika  Kasrah: ditulis di atas Ya' tanpa titik (ئ). Contoh: سُئِلَ (Su'ila)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika  Dhamah: ditulis di atas Wau (ؤ). Contoh: مُؤْمِنٌ (Mu'minun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika  Fathah: ditulis di atas Alif (أ). Contoh: رَأْسٌ (Ra'sun)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
     }
 }
 
@@ -190,15 +190,15 @@ fun HamzahAkhirSection(contentColor: Color) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            "Penulisannya hanya melihat harakat huruf **sebelum** Hamzah.",
+            "Penulisannya hanya melihat harakat huruf sebelum Hamzah.",
             style = MaterialTheme.typography.bodyMedium,
             color = contentColor
         )
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("• Jika didahului **Kasrah**: ditulis di atas **Ya' tanpa titik (ئ)**. Contoh: **شَاطِئٌ** (Shāti'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika didahului **Dhamah**: ditulis di atas **Wau (ؤ)**. Contoh: **تَبَوُّءُ** (Tabawwu'u)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika didahului **Fathah**: ditulis di atas **Alif (أ)**. Contoh: **نَبَأٌ** (Naba'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
-        Text("• Jika didahului **Sukun/Mad**: ditulis **berdiri sendiri** (ء). Contoh: **مَاءٌ** (Mā'un), **شَيْءٌ** (Shai'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului Kasrah: ditulis di atas Ya' tanpa titik (ئ). Contoh : شَاطِئٌ (Shāti'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului Dhamah: ditulis di atas Wau (ؤ). Contoh: تَبَوُّءُ (Tabawwu'u)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului Fathah: ditulis di atas Alif (أ). Contoh: نَبَأٌ (Naba'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
+        Text("• Jika didahului Sukun/Mad: ditulis berdiri sendiri (ء). Contoh: مَاءٌ (Mā'un), شَيْءٌ (Shai'un)", style = MaterialTheme.typography.bodyLarge, color = contentColor)
     }
 }

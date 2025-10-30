@@ -68,10 +68,10 @@ fun Bab1Screen(navController: NavHostController) {
 
                 // Teks Materi
                 Text(
-                    "Semua **huruf hijaiyah** bisa menyambung dengan huruf sebelumnya, " +
+                    "Semua huruf hijaiyah bisa menyambung dengan huruf sebelumnya, " +
                             "tapi tidak semua bisa bersambung dengan huruf setelahnya.\n\n" +
-                            "**Huruf yang tidak bisa bersambung** ke kiri (hanya ke kanan) adalah: **ا و ز ر ذ د**\n" +
-                            "**Huruf yang dapat bersambung** dari kedua sisi adalah: **ي ه ن م ل ك ق ف غ ع ظ ط ض ص ش س خ ح ج ث ت ب**",
+                            "Huruf yang tidak bisa bersambung ke kiri (hanya ke kanan) adalah: ا و ز ر ذ د\n" +
+                            "Huruf yang dapat bersambung dari kedua sisi adalah = ي ه ن م ل ك ق ف غ ع ظ ط ض ص ش س خ ح ج ث ت ب",
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.DarkGray,
                     modifier = Modifier.padding(bottom = 16.dp)
@@ -80,7 +80,7 @@ fun Bab1Screen(navController: NavHostController) {
                     "Berikut ini tabel penulisan huruf hijaiyah bersambung:",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold,
-                    color = contentColor
+                    color = Color.Black
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -156,7 +156,7 @@ fun LetterRow(example: LetterExample) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(example.hurufAsli, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Text(example.hurufAsli, fontSize = 28.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -173,16 +173,16 @@ fun RowScope.DataCell(contoh: String, bentuk: String, weight: Float) {
         // Contoh Kata
         Text(
             text = contoh,
-            fontSize = 14.sp,
+            fontSize = 18.sp,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold
         )
         // Bentuk Sambungan (kecil di bawah contoh)
         Text(
             text = bentuk,
-            fontSize = 10.sp,
+            fontSize = 18.sp,
             textAlign = TextAlign.Center,
-            color = Color.Gray
+            color = Color.Black
         )
     }
     VerticalDivider(color = Color.LightGray, thickness = 1.dp)

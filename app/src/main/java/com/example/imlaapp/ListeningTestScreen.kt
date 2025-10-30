@@ -121,9 +121,7 @@ fun ListeningTestScreen(
     }
 }
 
-/**
- * Komponen Visual untuk Ikon Suara (menggunakan Resource ID)
- */
+
 @Composable
 fun AudioButton(
     iconResId: Int,
@@ -145,13 +143,11 @@ fun AudioButton(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            // Mengganti Icon bawaan dengan Image dari resource ID Anda
+
             Image(
                 painter = painterResource(id = iconResId),
                 contentDescription = "Putar Audio",
                 contentScale = ContentScale.Fit,
-                // Opsional: berikan tint warna pada ikon Anda
-                // colorFilter = ColorFilter.tint(iconTint),
                 modifier = Modifier.size(70.dp)
             )
         }
