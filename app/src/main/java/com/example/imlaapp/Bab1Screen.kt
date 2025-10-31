@@ -70,9 +70,9 @@ fun Bab1Screen(navController: NavHostController) {
                 Text(
                     "Semua huruf hijaiyah bisa menyambung dengan huruf sebelumnya, " +
                             "tapi tidak semua bisa bersambung dengan huruf setelahnya.\n\n" +
-                            "Huruf yang tidak bisa bersambung ke kiri (hanya ke kanan) adalah: ا و ز ر ذ د\n" +
-                            "Huruf yang dapat bersambung dari kedua sisi adalah = ي ه ن م ل ك ق ف غ ع ظ ط ض ص ش س خ ح ج ث ت ب",
-                    style = MaterialTheme.typography.bodyLarge,
+                            "Huruf yang tidak bisa bersambung dengan huruf setelahnya adalah: \n  ا و ز ر ذ د " +
+                            "\nHuruf yang dapat bersambung dari kedua sisinya  adalah : \n ب ت ث ج ح خ س ش ص ض ط ظ ع غ ف ق ك ل م ه ي ",
+                    style = MaterialTheme.typography.bodyLarge .copy(fontSize = 22.sp),
                     color = Color.DarkGray,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
