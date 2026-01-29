@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.material3.ListItemDefaults.contentColor
 import androidx.compose.runtime.Composable
@@ -84,8 +85,6 @@ fun Bab1Screen(navController: NavHostController) {
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
-
-                // Header Tabel
                 TableHeader()
             }
             // Daftar huruf dalam tabel
@@ -96,6 +95,26 @@ fun Bab1Screen(navController: NavHostController) {
 
                 }
             }
+        }
+        //TOMBOL kembali
+        IconButton(
+            onClick = { navController.popBackStack() }, // pake popBackStack agar kembali ke layar sebelumnya
+            modifier = Modifier
+                .statusBarsPadding() // Agar tidak kena notch/jam di HP
+                .padding(start = 16.dp, top = 8.dp)
+                .size(40.dp)
+                .background(
+                    color = Color(0xFFFF5722), // Merah
+                    shape = androidx.compose.foundation.shape.CircleShape
+                )
+                .align(Alignment.TopStart)
+        ) {
+            Icon(
+                imageVector = androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Kembali",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
         }
     }
 }

@@ -10,12 +10,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,7 +50,27 @@ fun PetunjukListeningTest(navController: NavHostController) {
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
-
+        //TOMBOL kembali
+        IconButton(
+            onClick = { navController.popBackStack() }, // pake popBackStack agar kembali ke layar sebelumnya
+            modifier = Modifier
+                .statusBarsPadding() // Agar tidak kena notch/jam di HP
+                .padding(start = 16.dp, top = 8.dp)
+                .size(40.dp)
+                .background(
+                    color = Color(0xFFFF5722), // Merah
+                    shape = androidx.compose.foundation.shape.CircleShape
+                )
+                .align(Alignment.TopStart)
+        ) {
+            Icon(
+                imageVector = androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Kembali",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+        }
+        // KONTEN UTAMA
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -86,14 +111,14 @@ fun PetunjukListeningTest(navController: NavHostController) {
                 // --- ATURAN 2 & 3: DENGAR DAN TULIS (2x Kesempatan) ---
                 InstructionItem(
                     title = "2. Dengarkan Baik-Baik! 🔊",
-                    content = "Klik tombol Speaker untuk dengar suara. Fokus! Suara hanya akan diputar DUA KALI saja (1x awal, 1x klik 'Dengar Lagi'). Setelah itu, kamu tidak bisa mengulanginya.",
+                    content = "Klik tombol Speaker untuk dengar suara. Fokus! Suara hanya akan diputar DUA KALI saja. Setelah itu, kamu tidak bisa mengulanginya.",
                     iconColor = ColorMint
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
                 // Menambahkan poin 3 (Tulis Jawabanmu) sebagai bagian dari proses dengar
                 Text(
-                    text = "✍️ Segera tuliskan jawabanmu di buku setelah selesai mendengarkan (maksimal 2 kali).",
+                    text = "✍️ Segera tuliskan jawabanmu di buku setelah selesai mendengarkan.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.DarkGray,
                     modifier = Modifier.padding(start = 10.dp)
@@ -127,7 +152,7 @@ fun PetunjukListeningTest(navController: NavHostController) {
                 elevation = ButtonDefaults.buttonElevation(8.dp)
             ) {
                 Text(
-                    text = "🚀 MULAI TES IMlA' SEKARANG!",
+                    text = "🚀 MULAI TES IMLA' SEKARANG!",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White

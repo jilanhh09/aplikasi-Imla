@@ -1,6 +1,7 @@
 package com.example.imlaapp
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,7 +11,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
@@ -38,6 +44,26 @@ fun LearnScreen(navController: NavHostController) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
+        //TOMBOL kembali
+        IconButton(
+            onClick = { navController.popBackStack() }, // pake popBackStack agar kembali ke layar sebelumnya
+            modifier = Modifier
+                .statusBarsPadding() // Agar tidak kena notch/jam di HP
+                .padding(start = 16.dp, top = 8.dp)
+                .size(40.dp)
+                .background(
+                    color = Color(0xFFFF5722), // Merah
+                    shape = androidx.compose.foundation.shape.CircleShape
+                )
+                .align(Alignment.TopStart)
+        ) {
+            Icon(
+                imageVector = androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Kembali",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+        }
     // konten utama dengan padding
          Column  (
              modifier = Modifier

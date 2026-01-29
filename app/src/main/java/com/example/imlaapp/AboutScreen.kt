@@ -5,7 +5,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +41,29 @@ fun AboutScreen(navController: NavHostController) {
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
+
+        // tombol back pojok kiri atas
+        IconButton(
+            onClick = { navController.navigate(Screen.Main.route)},
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(top = 20.dp, start = 16.dp) // jarak dari pinggir layar
+                .size(45.dp)//bulatan merah
+                .background(
+                    color = Color(0xFFFF5722), // Warna merah
+                    shape = CircleShape // latar bulat
+                )
+                .align(Alignment.TopStart)
+        ) {
+            Icon(
+                // Menggunakan AutoMirrored agar tidak error dan support RTL
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Kembali",
+                tint = Color.White, // Panah warna putih agar kontras dengan merah
+                modifier = Modifier.size(24.dp)
+            )
+        }
+
         // Konten utama
         Column(
             modifier = Modifier
@@ -70,7 +100,7 @@ fun AboutScreen(navController: NavHostController) {
                         Spacer(modifier = Modifier.height(8.dp))
 
                         Text(
-                            text = "Aplikasi ini dikembangkan untuk membantu siswa dalam pembelajaran Imla' (dikte Bahasa Arab) dengan fitur belajar dan kuis interaktif.",
+                            text = "Aplikasi ini dikembangkan untuk membantu siswa dalam pembelajaran Imla' (dikte Bahasa Arab) dengan fitur belajar dan kuis interaktif.\nAplikasi ini juga telah di ujicoba di MI Nurussalam dengan target pengguna yaitu siswa kelas 6 MI Nurussalam",
                             fontSize = 16.sp,
                             lineHeight = 22.sp,
                             color = Color.Black
@@ -81,8 +111,9 @@ fun AboutScreen(navController: NavHostController) {
                         Text(
                             text = "Developer : Jilan Haniyah (NIM: 432022618022)\n" +
                                     "Dosen Pembimbing : \n" +
-                                    "1. Dihin Muriyatmoko, S.ST.,M.T\n"+
-                                    "2. Dian Fikrianti S.SI.,M.Mat",
+                                    "1. Dian Fikrianti S.SI.,M.Mat\n"+
+                                    "2. Dihin Muriyatmoko, S.ST.,M.T\n"+
+                                    "Pengisi Suara : Ayu Caesar Gina Safitri",
                             fontSize = 14.sp,
                             color = Color.DarkGray
                         )
