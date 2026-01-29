@@ -124,7 +124,7 @@ fun AnswerListeningTest(navController: NavHostController) {
                     // **GANTI "rute_dikte" dengan rute ke halaman Dikte/Quiz Anda**
                     // Ini akan membersihkan stack dan pindah ke halaman dikte/quiz
                     navController.popBackStack()
-                    navController.navigate("ListeningTestScreen")
+                    navController.navigate("PetunjukListeningTest")
                 }
 
                 // Tombol Kembali ke Menu Utama

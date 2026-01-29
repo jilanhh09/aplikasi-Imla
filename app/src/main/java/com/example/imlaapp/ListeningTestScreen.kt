@@ -41,7 +41,7 @@ fun ListeningTestScreen(
     // Effect untuk melepaskan MediaPlayer saat Composable keluar dari komposisi
     DisposableEffect(Unit) {
         onDispose {
-            mediaPlayer.release() // <<< Sangat penting untuk melepaskan resource
+            mediaPlayer.release() 
         }
     }
 
